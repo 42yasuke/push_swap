@@ -3,21 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   stack.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jose <jose@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: jralph <jralph@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 13:19:55 by jose              #+#    #+#             */
-/*   Updated: 2022/12/19 15:34:18 by jose             ###   ########.fr       */
+/*   Updated: 2022/12/20 12:05:55 by jralph           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#ifndef STACK_H
+# define STACK_H
+
+# include <stdlib.h>
 
 typedef struct stack
 {
 	int				data;
 	struct stack	*prev;
-}	stack;
+}	t_stack;
 
-void	stack_push(stack **begin, int data);
-stack	*stack_pop(stack **begin);
-void	stack_clear(stack **begin);
+void	stack_push(t_stack **begin, int data);
+t_stack	*stack_pop(t_stack **begin);
+void	stack_clear(t_stack **begin);
+
+#endif

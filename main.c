@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jose <jose@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: jralph <jralph@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 18:28:49 by jose              #+#    #+#             */
-/*   Updated: 2022/12/19 20:23:46 by jose             ###   ########.fr       */
+/*   Updated: 2022/12/20 12:31:26 by jralph           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	ft_valide_tab(int ac, char **av)
 	return (1);
 }
 
-void	stack_tab(int ac, char **av, stack **begin)
+void	stack_tab(int ac, char **av, t_stack **begin)
 {
 	int	i;
 
@@ -51,10 +51,10 @@ void	stack_tab(int ac, char **av, stack **begin)
 
 int	main(int ac, char **av)
 {
-	stack	*begin;
+	t_stack	*begin;
 
 	begin = NULL;
-	if(ft_valide_tab(ac, av))
+	if (ft_valide_tab(ac, av))
 	{
 		stack_tab(ac, av, &begin);
 	}
