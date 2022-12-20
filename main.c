@@ -6,7 +6,7 @@
 /*   By: jralph <jralph@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 18:28:49 by jose              #+#    #+#             */
-/*   Updated: 2022/12/20 18:59:51 by jralph           ###   ########.fr       */
+/*   Updated: 2022/12/21 00:33:39 by jralph           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@ int	ft_duplicate(int ac, char **av)
 	int	i;
 	int	j;
 
-	i = 0;
+	i = 1;
 	while (i < ac)
 	{
 		j = i + 1;
 		while (j < ac)
 		{
-			if (av[i][0] == av[j][0])
+			if (ft_atoi(av[i]) == ft_atoi(av[j]))
 			{
 				write (2, "Error\n", 6);
 				return (0);
@@ -50,7 +50,7 @@ int	ft_valide_tab(int ac, char **av)
 	while (av[i])
 	{
 		val = ft_atoi(av[i]);
-		if (ft_strlen(av[i]) > 2 || (val == 0 && av[i][0] != '0'))
+		if (val == 0 && (ft_strlen(av[i]) > 2 || av[i][0] != '0'))
 		{
 			write (2, "Error\n", 6);
 			return (0);
@@ -60,7 +60,7 @@ int	ft_valide_tab(int ac, char **av)
 	return (ft_duplicate(ac, av));
 }
 
-void	stack_tab(int ac, char **av, t_stack **begin, t_stack **end)
+void	stack_tab(int ac, char **av, t_stack **begin)
 {
 	int	i;
 

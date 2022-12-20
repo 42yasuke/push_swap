@@ -6,7 +6,7 @@
 /*   By: jralph <jralph@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 13:25:39 by jose              #+#    #+#             */
-/*   Updated: 2022/12/20 18:51:03 by jralph           ###   ########.fr       */
+/*   Updated: 2022/12/20 23:45:23 by jralph           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	stack_pop(t_stack **begin)
 		*begin = (*begin)->prev;
 		ret = tmp->data;
 		free(tmp);
-		if (is_lst_node)
+		if (is_last_node)
 			*begin = NULL;
 	}
 	return (ret);
