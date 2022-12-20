@@ -1,21 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.h                                             :+:      :+:    :+:   */
+/*   s_r_p.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jralph <jralph@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/19 18:39:56 by jose              #+#    #+#             */
-/*   Updated: 2022/12/20 14:08:50 by jralph           ###   ########.fr       */
+/*   Created: 2022/12/20 13:52:45 by jralph            #+#    #+#             */
+/*   Updated: 2022/12/20 22:21:28 by jralph           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAIN_H
-# define MAIN_H
+#ifndef S_R_P_H
+# define S_R_P_H
 
-# include <stdio.h>
 # include <unistd.h>
 # include "stack.h"
 # include "libft/libft.h"
+
+void	ft_swap(t_stack **begin, char c);
+void	ft_push(t_stack **a, t_stack **b, char c);
 
 #endif

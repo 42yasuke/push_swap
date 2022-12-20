@@ -6,11 +6,34 @@
 /*   By: jralph <jralph@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 18:28:49 by jose              #+#    #+#             */
-/*   Updated: 2022/12/20 12:31:26 by jralph           ###   ########.fr       */
+/*   Updated: 2022/12/20 18:59:51 by jralph           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
+
+int	ft_duplicate(int ac, char **av)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < ac)
+	{
+		j = i + 1;
+		while (j < ac)
+		{
+			if (av[i][0] == av[j][0])
+			{
+				write (2, "Error\n", 6);
+				return (0);
+			}
+			j++;
+		}
+		i++;
+	}
+	return (1);
+}
 
 int	ft_valide_tab(int ac, char **av)
 {
@@ -34,10 +57,10 @@ int	ft_valide_tab(int ac, char **av)
 		}
 		i++;
 	}
-	return (1);
+	return (ft_duplicate(ac, av));
 }
 
-void	stack_tab(int ac, char **av, t_stack **begin)
+void	stack_tab(int ac, char **av, t_stack **begin, t_stack **end)
 {
 	int	i;
 
