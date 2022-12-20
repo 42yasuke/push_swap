@@ -6,7 +6,7 @@
 /*   By: jralph <jralph@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 13:48:04 by jralph            #+#    #+#             */
-/*   Updated: 2022/12/20 22:20:00 by jralph           ###   ########.fr       */
+/*   Updated: 2022/12/20 23:31:39 by jralph           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,15 +97,16 @@ void	ft_rotate(t_stack **begin, char *str)
 	i = 0;
 	tmp = *begin;
 	tab = malloc (sizeof(*tab) * stack_size(begin));
-	while (*begin)
+	while (tmp)
 	{
-		tab[i] = (*begin)->data;
-		*begin = (*begin)->prev;
+		tab[i] = (tmp)->data;
+		tmp = (tmp)->prev;
 		i++;
 	}
 	if (str[1] == 'r')
-		tab_rrotate(&tab stack_size(begin));
+		tab_rrotate(&tab, stack_size(begin));
 	else
-		tab_rotate(&tab stack_size(begin));
+		tab_rotate(&tab, stack_size(begin));
+	free(tab);
 	write(1, str, ft_strlen(str));
 }
