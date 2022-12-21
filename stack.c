@@ -6,7 +6,7 @@
 /*   By: jralph <jralph@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 13:25:39 by jose              #+#    #+#             */
-/*   Updated: 2022/12/20 23:45:23 by jralph           ###   ########.fr       */
+/*   Updated: 2022/12/21 07:42:37 by jralph           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	stack_push(t_stack **begin, int data)
 		return ;
 	new->data = data;
 	new->prev = *begin;
-	begin = &new;
+	*begin = new;
 }
 
 int	stack_pop(t_stack **begin)
@@ -33,11 +33,12 @@ int	stack_pop(t_stack **begin)
 	int		ret;
 	int		is_last_node;
 
-	tmp = NULL;
+	tmp = *begin;
 	ret = 0;
+	is_last_node = 0;
 	if (begin && *begin)
 	{
-		if (stack_size(begin) == 1)
+		if (stack_size(&tmp) == 1)
 			is_last_node = 1;
 		tmp = *begin;
 		*begin = (*begin)->prev;
@@ -51,18 +52,10 @@ int	stack_pop(t_stack **begin)
 
 void	stack_clear(t_stack **begin)
 {
-	t_stack	*tmp;
-
-	tmp = NULL;
 	if (!begin)
 		return ;
 	while (*begin)
-	{
-		tmp = *begin;
-		*begin = (*begin)->prev;
-		free(tmp);
-		tmp = NULL;
-	}
+		stack_pop(&(*begin));
 }
 
 int	stack_size(t_stack **begin)

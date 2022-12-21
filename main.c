@@ -6,7 +6,7 @@
 /*   By: jralph <jralph@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 18:28:49 by jose              #+#    #+#             */
-/*   Updated: 2022/12/21 00:33:39 by jralph           ###   ########.fr       */
+/*   Updated: 2022/12/21 06:17:34 by jralph           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,26 +60,30 @@ int	ft_valide_tab(int ac, char **av)
 	return (ft_duplicate(ac, av));
 }
 
-void	stack_tab(int ac, char **av, t_stack **begin)
+t_stack	*stack_tab(int ac, char **av)
 {
 	int	i;
+	t_stack	*begin;
 
 	i = ac - 1;
-	while (i > -1)
+	begin = NULL;
+	while (i > 0)
 	{
-		stack_push(begin, ft_atoi(av[i]));
+		stack_push(&begin, ft_atoi(av[i]));
 		i--;
 	}
+	return (begin);
 }
 
 int	main(int ac, char **av)
 {
-	t_stack	*begin;
+	t_stack	*begin_a;
 
-	begin = NULL;
+	begin_a = NULL;
 	if (ft_valide_tab(ac, av))
 	{
-		stack_tab(ac, av, &begin);
+		begin_a = stack_tab(ac, av);
 	}
+	stack_clear(&begin_a);
 	return (0);
 }
