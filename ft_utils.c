@@ -6,7 +6,7 @@
 /*   By: jralph <jralph@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 09:36:33 by jralph            #+#    #+#             */
-/*   Updated: 2022/12/22 20:52:40 by jralph           ###   ########.fr       */
+/*   Updated: 2022/12/22 21:54:28 by jralph           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ t_stack	*stack_tab(int ac, char **av)
 	pile = NULL;
 	while (i > 0)
 	{
-		stack_push(&pile, ft_atoi(av[i]), 1);
+		stack_push(pile, ft_atoi(av[i]), 1);
 		i--;
 	}
 	return (pile);

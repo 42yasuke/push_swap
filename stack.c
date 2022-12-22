@@ -6,7 +6,7 @@
 /*   By: jralph <jralph@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 13:25:39 by jose              #+#    #+#             */
-/*   Updated: 2022/12/22 20:41:21 by jralph           ###   ########.fr       */
+/*   Updated: 2022/12/22 21:52:49 by jralph           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	stack_initial(t_stack *pile)
 	pile->end = NULL;
 }
 
-void	stack_push(t_stack *pile, int data, int is_stack_a)
+void	stack_push(t_stack *pile, int data, int is_need)
 {
 	t_node	*new;
 
@@ -33,7 +33,7 @@ void	stack_push(t_stack *pile, int data, int is_stack_a)
 	pile->begin = new;
 	if (!pile->end)
 		pile->end = new;
-	if (is_stack_a)
+	if (is_need)
 		ft_set_index(pile);
 	ft_set_pos(pile);
 }

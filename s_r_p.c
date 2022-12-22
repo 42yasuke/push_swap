@@ -6,112 +6,60 @@
 /*   By: jralph <jralph@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 13:48:04 by jralph            #+#    #+#             */
-/*   Updated: 2022/12/22 08:43:51 by jralph           ###   ########.fr       */
+/*   Updated: 2022/12/22 22:18:31 by jralph           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "s_r_p.h"
 
-void	ft_swap(t_stack **begin, char c)
+void	ft_swap(t_stack *pile, int is_stack_a)
 {
-	int	tmp;
+	int		val;
+	t_node	tmp;
 
-	tmp = 0;
-	if (stack_size(begin) > 1)
+	val = 0;
+	tmp = pile->begin;
+	if (stack_size(pile) > 1)
 	{
-		tmp = (*begin)->data;
-		(*begin)->data = (*begin)->prev->data;
-		(*begin)->prev->data = tmp;
-		if (c == 'a')
+		val = tmp->data;
+		tmp->data = tmp->prev->data;
+		tmp->prev->data = val;
+		if (is_stack_a)
 			write (1, "sa\n", 3);
 		else
 			write (1, "sb\n", 3);
 	}
 }
 
-void	ft_push(t_stack **a, t_stack **b, char c)
+void	ft_push(t_stack *a, t_stack *b, int is_pa)
 {
-	if (c == 'a')
+	if (is_pa)
 	{
-		if (!b)
+		if (!b->begin)
 			return ;
-		stack_push(a, stack_pop(b));
+		stack_push(a, stack_pop(b), 0);
 		write (1, "pa\n", 3);
 	}
 	else
 	{
-		if (!a)
+		if (!a->begin)
 			return ;
-		stack_push(b, stack_pop(a));
+		stack_push(b, stack_pop(a), 0);
 		write (1, "pb\n", 3);
 	}
 }
 
-static void	tab_rotate(int	**tabl, int len)
+void	ft_rotate(t_stack *pile, char *str)
 {
-	int	i;
-	int	tmp;
-	int	tmp2;
-	int	*tab;
-
-	tab = *tabl;
-	i = len -1;
-	tmp = tab[i];
-	tab[i] = tab[0];
-	while (i > 0)
-	{
-		tmp2 = tab[i - 1];
-		tab[i - 1] = tmp;
-		tmp = tmp2;
-		i--;
-	}
-}
-
-static void	tab_rrotate(int	**tabl, int len)
-{
-	int	i;
-	int	tmp;
-	int	tmp2;
-	int	*tab;
-
-	tab = *tabl;
-	i = 0;
-	tmp = tab[i];
-	tab[i] = tab[len - 1];
-	while (i < len - 1)
-	{
-		tmp2 = tab[i + 1];
-		tab[i + 1] = tmp;
-		tmp = tmp2;
-		i++;
-	}
-}
-
-void	ft_rotate(t_stack **begin, char *str)
-{
-	int		*tab;
-	int		i;
-	t_stack	*tmp;
-
-	tab = NULL;
-	i = 0;
-	tmp = *begin;
-	tab = malloc (sizeof(*tab) * stack_size(begin));
-	while (tmp)
-	{
-		tab[i++] = (tmp)->data;
-		tmp = (tmp)->prev;
-	}
 	if (str[1] == 'r')
-		tab_rrotate(&tab, stack_size(begin));
-	else
-		tab_rotate(&tab, stack_size(begin));
-	i = 0;
-	while (*begin)
 	{
-		(*begin)->data = tab[i++];
-		*begin = (*begin)->prev;
+		pile->begin = pile->begin->prev;
+		pile->end = pile->end->prev;
 	}
-	free(tab);
+	else
+	{
+		pile->begin = pile->begin->next;
+		pile->end = pile->end->next;
+	}
 	write(1, str, ft_strlen(str));
 }
