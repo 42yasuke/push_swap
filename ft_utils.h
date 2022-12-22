@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_utils.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jralph <jralph@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/19 18:28:49 by jose              #+#    #+#             */
-/*   Updated: 2022/12/22 09:43:53 by jralph           ###   ########.fr       */
+/*   Created: 2022/12/22 09:42:57 by jralph            #+#    #+#             */
+/*   Updated: 2022/12/22 19:53:15 by jralph           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.h"
+#ifndef FT_UTILS_H
+# define FT_UTILS_H
 
-int	main(int ac, char **av)
-{
-	t_stack	*pile;
+# include "algo.h"
 
-	pile = NULL;
-	if (ft_valide_tab(ac, av))
-	{
-		pile = stack_tab(ac, av);
-		ft_sort(&pile);
-	}
-	stack_clear(&pile);
-	return (0);
-}
+int		ft_duplicate(int ac, char **av);
+int		ft_valide_tab(int ac, char **av);
+t_stack	*stack_tab(int ac, char **av);
+void	ft_set_index(t_stack *pile);
+void	ft_set_pos(t_stack *pile);
+
+#endif

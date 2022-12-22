@@ -6,70 +6,83 @@
 /*   By: jralph <jralph@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 13:25:39 by jose              #+#    #+#             */
-/*   Updated: 2022/12/21 07:42:37 by jralph           ###   ########.fr       */
+/*   Updated: 2022/12/22 19:38:52 by jralph           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stack.h"
+#include "ft_utils.h"
 
-void	stack_push(t_stack **begin, int data)
+void	stack_initial(t_stack *pile)
 {
-	t_stack	*new;
+	pile->begin = NULL;
+	pile->end = NULL;
+}
 
-	new = NULL;
-	if (!begin)
-		return ;
+void	stack_push(t_stack *pile, int data, int a)
+{
+	t_node	*new;
+
 	new = malloc(sizeof(*new));
 	if (!new)
 		return ;
 	new->data = data;
-	new->prev = *begin;
-	*begin = new;
+	new->next = pile->end;
+	new->prev = pile->begin;
+	new->index = -1;
+	pile->begin = new;
+	if (!pile->end)
+		pile->end = new;
+	if (a)
+		ft_set_index(pile);
+	ft_set_pos(pile);
 }
 
-int	stack_pop(t_stack **begin)
+int	stack_pop(t_stack *pile)
 {
-	t_stack	*tmp;
+	t_node	*tmp;
 	int		ret;
 	int		is_last_node;
 
-	tmp = *begin;
+	tmp = pile->begin;
 	ret = 0;
 	is_last_node = 0;
-	if (begin && *begin)
-	{
-		if (stack_size(&tmp) == 1)
-			is_last_node = 1;
-		tmp = *begin;
-		*begin = (*begin)->prev;
-		ret = tmp->data;
-		free(tmp);
-		if (is_last_node)
-			*begin = NULL;
-	}
+	if (stack_size(pile) == 1)
+		is_last_node = 1;
+	tmp = pile->begin;
+	pile->begin = pile->begin->prev;
+	pile->end->prev = pile->begin;
+	pile->begin->next = pile->end;
+	ret = tmp->data;
+	free(tmp);
+	if (is_last_node)
+		stack_initial(pile);
+	ft_set_pos(pile);
 	return (ret);
 }
 
-void	stack_clear(t_stack **begin)
+void	stack_clear(t_stack *pile)
 {
-	if (!begin)
+	if (!pile->begin)
 		return ;
-	while (*begin)
-		stack_pop(&(*begin));
+	while (pile)
+		stack_pop(pile);
 }
 
-int	stack_size(t_stack **begin)
+int	stack_size(t_stack *pile)
 {
-	int	ret;
+	int		ret;
+	t_node	*tmp;
 
 	ret = 0;
-	if (begin)
+	if (pile)
 	{
-		while (*begin)
+		tmp = pile->begin;
+		while (tmp && tmp != pile->end)
 		{
 			ret++;
-			*begin = (*begin)->prev;
+			tmp = tmp->prev;
 		}
 	}
-	return (ret);
+	return (++ret);
 }

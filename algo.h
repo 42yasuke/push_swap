@@ -1,27 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   algo.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jralph <jralph@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/19 18:28:49 by jose              #+#    #+#             */
-/*   Updated: 2022/12/22 09:43:53 by jralph           ###   ########.fr       */
+/*   Created: 2022/12/21 19:12:14 by jralph            #+#    #+#             */
+/*   Updated: 2022/12/21 19:17:29 by jralph           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.h"
+#ifndef ALGO_H
+# define ALGO_H
 
-int	main(int ac, char **av)
-{
-	t_stack	*pile;
+# include "s_r_p.h"
 
-	pile = NULL;
-	if (ft_valide_tab(ac, av))
-	{
-		pile = stack_tab(ac, av);
-		ft_sort(&pile);
-	}
-	stack_clear(&pile);
-	return (0);
-}
+#endif

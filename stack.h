@@ -6,7 +6,7 @@
 /*   By: jralph <jralph@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 13:19:55 by jose              #+#    #+#             */
-/*   Updated: 2022/12/20 23:42:54 by jralph           ###   ########.fr       */
+/*   Updated: 2022/12/22 19:41:02 by jralph           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,25 @@
 
 # include <stdlib.h>
 
-typedef struct stack
+typedef struct node
 {
 	int				data;
-	struct stack	*prev;
+	struct node		*prev;
+	struct node		*next;
+	int				index;
+	int				pos;
+}	t_node;
+
+typedef struct stack
+{
+	t_node	*begin;
+	t_node	*end;
 }	t_stack;
 
-void	stack_push(t_stack **begin, int data);
-int		stack_pop(t_stack **begin);
-void	stack_clear(t_stack **begin);
-int		stack_size(t_stack **begin);
+void	stack_initial(t_stack *pile);
+void	stack_push(t_stack *pile, int data, int a);
+int		stack_pop(t_stack *pile);
+void	stack_clear(t_stack *pile);
+int		stack_size(t_stack *pile);
 
 #endif
