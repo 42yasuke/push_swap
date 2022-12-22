@@ -6,7 +6,7 @@
 /*   By: jralph <jralph@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 09:36:33 by jralph            #+#    #+#             */
-/*   Updated: 2022/12/22 20:30:38 by jralph           ###   ########.fr       */
+/*   Updated: 2022/12/22 20:52:40 by jralph           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,21 +78,25 @@ t_stack	*stack_tab(int ac, char **av)
 void	ft_set_index(t_stack *pile)
 {
 	int		i;
+	int		len_stack;
 	t_node	*tmp;
 	t_node	*tmp_min;
 
 	i = 0;
 	tmp = pile->begin;
 	tmp2 = tmp;
-	while (i < stack_size(pile))
+	len_stack = stack_size(pile);
+	while (i < len_stack)
 	{
 		while (tmp != pile->end)
 		{
-			if (tmp->index = -1 && tmp->data < tmp2->data)
+			if (tmp2->index != -1 && tmp->index == -1)
+				tmp2 = tmp;
+			if (tmp->index == -1 && tmp->data < tmp2->data)
 				tmp2 = tmp;
 			tmp = tmp->prev;
 		}
-		if (tmp->index = -1 && tmp->data < tmp2->data)
+		if (tmp->index == -1 && tmp->data < tmp2->data)
 				tmp2 = tmp;
 		tmp2->index = i;
 		tmp = pile->begin;
@@ -106,8 +110,11 @@ void	ft_set_pos(t_stack *pile)
 	t_node	tmp;
 
 	i = 0;
-	while (tmp != tmp->end)
+	while (tmp != pile->end)
 	{
-		;
+		tmp->pos = i;
+		i++;
+		tmp = tmp->prev;
 	}
+	tmp->pos = i;
 }
