@@ -6,7 +6,7 @@
 /*   By: jralph <jralph@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 19:11:36 by jralph            #+#    #+#             */
-/*   Updated: 2022/12/23 00:19:31 by jralph           ###   ########.fr       */
+/*   Updated: 2022/12/23 10:20:25 by jralph           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,13 @@ static int	ft_is_sort(t_stack *pile)
 
 	tmp = pile->begin;
 	nbr = tmp->data;
-	while (tmp->prev != pile->end)
+	while (tmp->prev != pile->begin)
 	{
 		if (nbr > tmp->prev->data)
 			return (0);
-		nbr = tmp->data;
+		nbr = tmp->prev->data;
 		tmp = tmp->prev;
 	}
-	if (nbr > tmp->prev->data)
-		return (0);
 	return (1);
 }
 

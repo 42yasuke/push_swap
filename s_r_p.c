@@ -6,7 +6,7 @@
 /*   By: jralph <jralph@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 13:48:04 by jralph            #+#    #+#             */
-/*   Updated: 2022/12/23 01:52:18 by jralph           ###   ########.fr       */
+/*   Updated: 2022/12/23 09:51:54 by jralph           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	ft_push(t_stack *a, t_stack *b, int is_pa)
 
 void	ft_rotate(t_stack *pile, char *str)
 {
-	if (str[1] == 'r')
+	if (str[1] != 'r')
 	{
 		pile->begin = pile->begin->prev;
 		pile->end = pile->end->prev;
