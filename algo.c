@@ -6,7 +6,7 @@
 /*   By: jralph <jralph@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 19:11:36 by jralph            #+#    #+#             */
-/*   Updated: 2022/12/23 10:20:25 by jralph           ###   ########.fr       */
+/*   Updated: 2022/12/23 17:02:51 by jralph           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static int	ft_is_sort(t_stack *pile)
 	return (1);
 }
 
-void	ft_three_sort(t_stack *pile)
+static void	ft_three_sort(t_stack *pile)
 {
 	t_node	*tmp_max;
 	int		len;
@@ -54,6 +54,32 @@ void	ft_three_sort(t_stack *pile)
 	}
 }
 
+static void	ft_five_sort(t_stack *pileA)
+{
+	t_stack	*pileB;
+
+	pileB = malloc(sizeof(*pileB));
+	if (!pileB)
+		return ;
+	stack_initial(pileB);
+	while(stack_size(pileA) != 3)
+		ft_push(pileA, pileB, 0);
+	ft_three_sort(pileA);
+	while (pileB->begin)
+	{
+		if (pileB->begin->data > ft_data_max(pileA, 1))
+		{
+			ft_push(pileA, pileB, 1);
+			ft_rotate(pileA, "ra\n");
+		}
+		else
+		{
+			if (stack_size(pileA)/2 < ft_nbig_pos(pileA, pileB->begin->data))/*on doit corriger*/
+				while (pileA->begin)
+		}
+	}
+}
+
 void	ft_sort(t_stack *pile)
 {
 	int	size;
@@ -61,9 +87,9 @@ void	ft_sort(t_stack *pile)
 	size = stack_size(pile);
 	if (size > 1 && size <= 3)
 		ft_three_sort(pile);
-	/*else if (size > 3 && size <= 5)
+	else if (size > 3 && size <= 5)
 		ft_five_sort(pile);
-	else if (size > 5 && size <= 100)
+	/*else if (size > 5 && size <= 100)
 		ft_medium_sort(pile);
 	else if (size > 100)
 		ft_big_sort(pile);*/

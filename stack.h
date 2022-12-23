@@ -6,7 +6,7 @@
 /*   By: jralph <jralph@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 13:19:55 by jose              #+#    #+#             */
-/*   Updated: 2022/12/23 08:51:53 by jralph           ###   ########.fr       */
+/*   Updated: 2022/12/23 10:59:58 by jralph           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ typedef struct stack
 }	t_stack;
 
 void	stack_initial(t_stack *pile);
-void	stack_push(t_stack *pile, int data);
+void	stack_push(t_stack *pile, int data, int index);
 int		stack_pop(t_stack *pile);
 void	stack_clear(t_stack *pile);
 int		stack_size(t_stack *pile);
