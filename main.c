@@ -6,7 +6,7 @@
 /*   By: jralph <jralph@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 18:28:49 by jose              #+#    #+#             */
-/*   Updated: 2022/12/23 10:07:22 by jralph           ###   ########.fr       */
+/*   Updated: 2022/12/23 10:30:07 by jralph           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ int	main(int ac, char **av)
 		if (!pile)
 			return (0);
 		ft_sort(pile);
+		stack_clear(pile);
 	}
-	stack_clear(pile);
 	free(pile);
 	return (0);
 }
