@@ -6,7 +6,7 @@
 /*   By: jralph <jralph@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 19:12:14 by jralph            #+#    #+#             */
-/*   Updated: 2022/12/21 19:17:29 by jralph           ###   ########.fr       */
+/*   Updated: 2022/12/23 00:24:32 by jralph           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,8 @@
 # define ALGO_H
 
 # include "s_r_p.h"
+
+void	ft_three_sort(t_stack *pile);
+void	ft_sort(t_stack *pile);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: jralph <jralph@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 13:25:39 by jose              #+#    #+#             */
-/*   Updated: 2022/12/22 21:52:49 by jralph           ###   ########.fr       */
+/*   Updated: 2022/12/23 02:30:50 by jralph           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,22 +19,25 @@ void	stack_initial(t_stack *pile)
 	pile->end = NULL;
 }
 
-void	stack_push(t_stack *pile, int data, int is_need)
+void	stack_push(t_stack *pile, int data)
 {
-	t_node	*new;
+	t_node		*new;
 
 	new = malloc(sizeof(*new));
 	if (!new)
 		return ;
 	new->data = data;
-	new->next = pile->end;
-	new->prev = pile->begin;
-	new->index = -1;
-	pile->begin = new;
 	if (!pile->end)
 		pile->end = new;
-	if (is_need)
-		ft_set_index(pile);
+	else
+		pile->end->prev = new;
+	new->next = pile->end;
+	if (!pile->begin)
+		pile->begin = new;
+	new->prev = pile->begin;
+	pile->begin->next = new;
+	new->index = -1;
+	pile->begin = new;
 	ft_set_pos(pile);
 }
 
@@ -65,7 +68,7 @@ void	stack_clear(t_stack *pile)
 {
 	if (!pile->begin)
 		return ;
-	while (pile)
+	while (pile->begin)
 		stack_pop(pile);
 }
 

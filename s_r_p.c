@@ -6,7 +6,7 @@
 /*   By: jralph <jralph@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 13:48:04 by jralph            #+#    #+#             */
-/*   Updated: 2022/12/22 22:18:31 by jralph           ###   ########.fr       */
+/*   Updated: 2022/12/23 01:52:18 by jralph           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	ft_swap(t_stack *pile, int is_stack_a)
 {
 	int		val;
-	t_node	tmp;
+	t_node	*tmp;
 
 	val = 0;
 	tmp = pile->begin;
@@ -37,14 +37,14 @@ void	ft_push(t_stack *a, t_stack *b, int is_pa)
 	{
 		if (!b->begin)
 			return ;
-		stack_push(a, stack_pop(b), 0);
+		stack_push(a, stack_pop(b));
 		write (1, "pa\n", 3);
 	}
 	else
 	{
 		if (!a->begin)
 			return ;
-		stack_push(b, stack_pop(a), 0);
+		stack_push(b, stack_pop(a));
 		write (1, "pb\n", 3);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: jralph <jralph@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 18:28:49 by jose              #+#    #+#             */
-/*   Updated: 2022/12/22 09:43:53 by jralph           ###   ########.fr       */
+/*   Updated: 2022/12/23 00:55:48 by jralph           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,10 @@ int	main(int ac, char **av)
 	if (ft_valide_tab(ac, av))
 	{
 		pile = stack_tab(ac, av);
-		ft_sort(&pile);
+		if (!pile)
+			return (0);
+		ft_sort(pile);
 	}
-	stack_clear(&pile);
+	stack_clear(pile);
 	return (0);
 }

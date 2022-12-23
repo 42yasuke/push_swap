@@ -6,11 +6,11 @@
 /*   By: jralph <jralph@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 09:36:33 by jralph            #+#    #+#             */
-/*   Updated: 2022/12/22 21:54:28 by jralph           ###   ########.fr       */
+/*   Updated: 2022/12/23 02:48:18 by jralph           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils.h"
+#include "ft_utils.h"
 
 int	ft_duplicate(int ac, char **av)
 {
@@ -66,39 +66,43 @@ t_stack	*stack_tab(int ac, char **av)
 	t_stack	*pile;
 
 	i = ac - 1;
-	pile = NULL;
+	pile = malloc(sizeof(*pile));
+	if (!pile)
+		return (NULL);
+	stack_initial(pile);
 	while (i > 0)
 	{
-		stack_push(pile, ft_atoi(av[i]), 1);
+		stack_push(pile, ft_atoi(av[i]));
 		i--;
 	}
+	ft_set_index(pile);
 	return (pile);
 }
 
 void	ft_set_index(t_stack *pile)
 {
-	int		i;
-	int		len_stack;
-	t_node	*tmp;
-	t_node	*tmp_min;
+	static int	i = 0;
+	static int	j = 0;
+	int			len_stack;
+	t_node		*tmp;
+	t_node		*tmp_min;
 
-	i = 0;
 	tmp = pile->begin;
-	tmp2 = tmp;
+	tmp_min = tmp;
 	len_stack = stack_size(pile);
 	while (i < len_stack)
 	{
-		while (tmp != pile->end)
+		while (j < len_stack)
 		{
-			if (tmp2->index != -1 && tmp->index == -1)
-				tmp2 = tmp;
-			if (tmp->index == -1 && tmp->data < tmp2->data)
-				tmp2 = tmp;
+			if (tmp_min->index != -1 && tmp->index == -1)
+				tmp_min = tmp;
+			if (tmp->index == -1 && tmp->data < tmp_min->data)
+				tmp_min = tmp;
 			tmp = tmp->prev;
+			j++;
 		}
-		if (tmp->index == -1 && tmp->data < tmp2->data)
-				tmp2 = tmp;
-		tmp2->index = i;
+		j = 0;
+		tmp_min->index = i;
 		tmp = pile->begin;
 		i++;
 	}
@@ -107,9 +111,12 @@ void	ft_set_index(t_stack *pile)
 void	ft_set_pos(t_stack *pile)
 {
 	int		i;
-	t_node	tmp;
+	t_node	*tmp;
 
 	i = 0;
+	tmp = pile->begin;
+	if (!tmp)
+		return ;
 	while (tmp != pile->end)
 	{
 		tmp->pos = i;

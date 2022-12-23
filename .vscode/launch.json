@@ -9,7 +9,7 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "/mnt/nfs/homes/jralph/Desktop/push_swap/a.out",
-            "args": ["20", "2"],
+            "args": ["2", "1", "3"],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
             "environment": [],
