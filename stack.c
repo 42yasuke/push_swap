@@ -6,12 +6,11 @@
 /*   By: jralph <jralph@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 13:25:39 by jose              #+#    #+#             */
-/*   Updated: 2022/12/23 10:59:35 by jralph           ###   ########.fr       */
+/*   Updated: 2022/12/28 11:19:45 by jralph           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "stack.h"
-#include "ft_utils.h"
+#include "push_swap.h"
 
 void	stack_initial(t_stack *pile)
 {
