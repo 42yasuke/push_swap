@@ -6,7 +6,7 @@
 /*   By: jralph <jralph@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 19:11:36 by jralph            #+#    #+#             */
-/*   Updated: 2022/12/28 19:19:53 by jralph           ###   ########.fr       */
+/*   Updated: 2023/01/01 01:10:32 by jralph           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	ft_three_sort(t_stack *pile)
 		tmp_max = tmp_max->prev;
 	if (tmp_max == pile->begin)
 	{
-		ft_rotate(pile, "ra\n");
+		ft_rotate_manager(pile, NULL, "ra\n");
 		if (!ft_is_sort(pile))
 			return (ft_swap(pile, 1));
 	}
@@ -29,7 +29,7 @@ static void	ft_three_sort(t_stack *pile)
 		return (ft_swap(pile, 1));
 	else if (!ft_is_sort(pile))
 	{
-		ft_rotate(pile, "rra\n");
+		ft_rotate_manager(pile, NULL, "rra\n");
 		if (!ft_is_sort(pile))
 			return (ft_swap(pile, 1));
 	}
@@ -46,7 +46,7 @@ static void	ft_five_sort(t_stack *pileA)
 	while (stack_size(pileA) != 3)
 		ft_push(pileA, pileb, 0);
 	ft_three_sort(pileA);
-	ft_five_loop(pileA, pileb);
+	ft_five_loop2(pileA, pileb);
 	ft_sort_after_push(pileA);
 	free (pileb);
 	pileb = NULL;
@@ -55,28 +55,20 @@ static void	ft_five_sort(t_stack *pileA)
 static void	ft_medium_sort(t_stack *pileA)
 {
 	t_stack	*pileb;
-	int		i;
-	int		count;
 
-	i = 1;
-	count = 0;
 	pileb = malloc(sizeof(*pileb));
 	if (!pileb)
 		return ;
 	stack_initial(pileb);
-	while (stack_size(pileA) != 3)
-	{
-		ft_push_interval5(pileA, pileb, i, &count);
-		i++;
-	}
+	ft_push_interval5(pileA, pileb);
 	ft_three_sort(pileA);
-	ft_five_loop(pileA, pileb);
+	ft_five_loop2(pileA, pileb);
 	ft_sort_after_push(pileA);
 	free (pileb);
 	pileb = NULL;
 }
 
-static void	ft_big_sort(t_stack *pileA)
+/*static void	ft_big_sort(t_stack *pileA)
 {
 	t_stack	*pileb;
 	int		i;
@@ -94,7 +86,23 @@ static void	ft_big_sort(t_stack *pileA)
 		i++;
 	}
 	ft_three_sort(pileA);
-	ft_five_loop(pileA, pileb);
+	ft_five_loop2(pileA, pileb);
+	ft_sort_after_push(pileA);
+	free (pileb);
+	pileb = NULL;
+}*/
+
+static void	ft_big_sort(t_stack *pileA)
+{
+	t_stack	*pileb;
+
+	pileb = malloc(sizeof(*pileb));
+	if (!pileb)
+		return ;
+	stack_initial(pileb);
+	ft_push_interval5(pileA, pileb);
+	ft_three_sort(pileA);
+	ft_five_loop2(pileA, pileb);
 	ft_sort_after_push(pileA);
 	free (pileb);
 	pileb = NULL;

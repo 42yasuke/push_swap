@@ -6,7 +6,7 @@
 /*   By: jralph <jralph@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 13:48:04 by jralph            #+#    #+#             */
-/*   Updated: 2022/12/28 11:19:23 by jralph           ###   ########.fr       */
+/*   Updated: 2023/01/01 01:00:11 by jralph           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,7 @@ void	ft_rotate(t_stack *pile, char *str)
 		pile->begin = pile->begin->next;
 		pile->end = pile->end->next;
 	}
-	ft_set_pos(pile);
-	write(1, str, ft_strlen(str));
+	/*ft_set_pos(pile);*/
 }
 
 t_node	*ft_node_max(t_stack *pile, int max)
@@ -100,7 +99,7 @@ t_node	*ft_node_max(t_stack *pile, int max)
 	return (node_max);
 }
 
-int	ft_nbig_pos(t_stack *pile, t_node *node_max)
+int	ft_nbig_pos(t_stack *pile, t_node *node_max) 
 {
 	t_node	*tmp;
 	t_node	*node_sup;
@@ -108,6 +107,8 @@ int	ft_nbig_pos(t_stack *pile, t_node *node_max)
 
 	tmp = pile->begin;
 	node_sup = ft_node_max(pile, 1);
+	if ((node_max)->data > node_sup->data)
+		return (ft_node_max(pile, 0)->pos);
 	nbr = stack_size(pile);
 	while (nbr--)
 	{

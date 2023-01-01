@@ -6,7 +6,7 @@
 /*   By: jralph <jralph@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 09:36:33 by jralph            #+#    #+#             */
-/*   Updated: 2022/12/28 19:14:43 by jralph           ###   ########.fr       */
+/*   Updated: 2023/01/01 00:41:04 by jralph           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,8 @@ void	ft_set_pos(t_stack *pile)
 	int		i;
 	t_node	*tmp;
 
+	if(!pile)
+		return ;
 	i = 0;
 	tmp = pile->begin;
 	if (!tmp)
