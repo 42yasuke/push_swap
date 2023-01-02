@@ -5,80 +5,110 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jralph <jralph@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/30 11:29:01 by jralph            #+#    #+#             */
-/*   Updated: 2022/12/30 14:34:21 by jralph           ###   ########.fr       */
+/*   Created: 2023/01/02 09:44:56 by jralph            #+#    #+#             */
+/*   Updated: 2023/01/02 09:47:50 by jralph           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_node	*ft_find_same_group_from_top(t_stack *pileA, t_stack *pileb)
+void	ft_remote(t_stack *pileA, t_stack *pileb, t_node *node_opti)
 {
-	int		i;
+	int	nbr;
+
+	nbr = node_opti->pos;
+	if ((float)stack_size(pileb) / (float)2 > (float)nbr)
+		while (nbr--)
+			ft_rotate_manager(NULL, pileb, "rb\n");
+	else
+	{
+		nbr = stack_size(pileb) - nbr;
+		while (nbr--)
+			ft_rotate_manager(NULL, pileb, "rrb\n");
+	}
+	ft_five_loop(pileA, pileb);
+}
+
+t_node	*ft_node_max(t_stack *pile, int max)
+{
+	t_node	*node_max;
 	t_node	*tmp;
 
-	i = stack_size(pileb);
-	tmp = pileb->begin;
+	tmp = pile->begin->prev;
+	node_max = pile->begin;
+	if (max)
+	{
+		while (tmp != pile->begin)
+		{
+			if (tmp->data > node_max->data)
+				node_max = tmp;
+			tmp = tmp->prev;
+		}
+	}
+	else
+	{
+		while (tmp != pile->begin)
+		{
+			if (tmp->data < node_max->data)
+				node_max = tmp;
+			tmp = tmp->prev;
+		}
+	}
+	return (node_max);
+}
+
+int	ft_nbig_pos(t_stack *pile, t_node *node_max)
+{
+	t_node	*tmp;
+	t_node	*node_sup;
+	int		nbr;
+
+	tmp = pile->begin;
+	node_sup = ft_node_max(pile, 1);
+	if ((node_max)->data > node_sup->data)
+		return (ft_node_max(pile, 0)->pos);
+	nbr = stack_size(pile);
+	while (nbr--)
+	{
+		if (tmp->data >= node_max->data && tmp->data <= node_sup->data)
+			node_sup = tmp;
+		tmp = tmp->prev;
+	}
+	return (node_sup->pos);
+}
+
+t_node	*ft_find_highest(t_stack *pileA)
+{
+	t_node	*tmp;
+	int		len;
+	int		i;
+
+	len = (ft_node_max(pileA, 1))->index + 1;
+	i = len;
+	tmp = pileA->begin;
 	while (i--)
 	{
-		if (ft_give_group_interval(pileA, pileA->begin) \
-		== ft_give_group_interval(pileA, tmp))
+		if (tmp->index < len - 3)
 			return (tmp);
 		tmp = tmp->prev;
 	}
 	return (NULL);
 }
 
-t_node	*ft_find_same_group_from_bottom(t_stack *pileA, t_stack *pileb)
+t_node	*ft_find_lowest(t_stack *pileA)
 {
-	int		i;
 	t_node	*tmp;
+	int		len ;
+	int		i;
 
-	i = stack_size(pileb);
-	tmp = pileb->end;
+	len = (ft_node_max(pileA, 1))->index + 1;
+	i = stack_size(pileA);
+	tmp = pileA->end;
 	while (i--)
 	{
-		if (ft_give_group_interval(pileA, pileA->begin) \
-		== ft_give_group_interval(pileA, tmp))
+		if (tmp->index < len - 3)
 			return (tmp);
 		tmp = tmp->next;
 	}
 	return (NULL);
-}
-
-t_node	*ft_find_the_first_diff_group(t_stack *pileb)
-{
-	int		i;
-	t_node	*tmp;
-
-	i = stack_size(pileb);
-	tmp = pileb->begin;
-	while (i--)
-	{
-		if (ft_give_group_interval(pileb, tmp) != \
-		ft_give_group_interval(pileb, tmp->prev))
-			return (tmp->prev);
-		tmp = tmp->prev;
-	}
-	return (NULL);
-}
-
-void	ft_regroup_b(t_stack *pileb)
-{
-	int		i;
-	t_node	*node_top;
-
-	node_top = ft_find_the_first_diff_group(pileb);
-	if (!node_top)
-		return ;
-	i = node_top->pos;
-	if ((float)i < (float)stack_size(pileb) / (float)2)
-		while (i-- > -1)
-			ft_rotate_manager(NULL, pileb, "rb\n");
-	else
-	{
-		i = stack_size(pileb) - node_top->pos;
-		while (i-- > -1)
-			ft_rotate_manager(NULL, pileb, "rrb\n");
-	}
 }

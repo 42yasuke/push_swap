@@ -1,30 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   stack_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jralph <jralph@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/19 18:28:49 by jose              #+#    #+#             */
-/*   Updated: 2023/01/02 17:16:31 by jralph           ###   ########.fr       */
+/*   Created: 2023/01/02 01:30:06 by jralph            #+#    #+#             */
+/*   Updated: 2023/01/02 17:40:50 by jralph           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	main(int ac, char **av)
+t_stack	*stack_tab(int ac, char **av)
 {
+	int		i;
 	t_stack	*pile;
 
-	pile = NULL;
-	if (ft_valide_tab(ac, av))
-	{
-		pile = stack_tab(ac, av);
-		if (!pile)
-			return (0);
-		ft_sort(pile);
-		stack_clear(pile);
-	}
-	free(pile);
-	return (0);
+	i = ac;
+	if (ac == 2)
+		return (ft_chaine2(av));
+	pile = malloc(sizeof(*pile));
+	if (!pile)
+		return (NULL);
+	stack_initial(pile);
+	while (--i > 0)
+		stack_push(pile, ft_atoi(av[i]), -1);
+	ft_set_index(pile);
+	return (pile);
 }

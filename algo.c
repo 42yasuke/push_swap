@@ -6,7 +6,7 @@
 /*   By: jralph <jralph@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 19:11:36 by jralph            #+#    #+#             */
-/*   Updated: 2023/01/01 01:10:32 by jralph           ###   ########.fr       */
+/*   Updated: 2023/01/02 11:24:46 by jralph           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,15 @@ static void	ft_three_sort(t_stack *pile)
 	{
 		ft_rotate_manager(pile, NULL, "ra\n");
 		if (!ft_is_sort(pile))
-			return (ft_swap(pile, 1));
+			return (ft_swap_manager(pile, NULL, "sa\n"));
 	}
 	else if (tmp_max == pile->end && !ft_is_sort(pile))
-		return (ft_swap(pile, 1));
+		return (ft_swap_manager(pile, NULL, "sa\n"));
 	else if (!ft_is_sort(pile))
 	{
 		ft_rotate_manager(pile, NULL, "rra\n");
 		if (!ft_is_sort(pile))
-			return (ft_swap(pile, 1));
+			return (ft_swap_manager(pile, NULL, "sa\n"));
 	}
 }
 
@@ -51,46 +51,6 @@ static void	ft_five_sort(t_stack *pileA)
 	free (pileb);
 	pileb = NULL;
 }
-
-static void	ft_medium_sort(t_stack *pileA)
-{
-	t_stack	*pileb;
-
-	pileb = malloc(sizeof(*pileb));
-	if (!pileb)
-		return ;
-	stack_initial(pileb);
-	ft_push_interval5(pileA, pileb);
-	ft_three_sort(pileA);
-	ft_five_loop2(pileA, pileb);
-	ft_sort_after_push(pileA);
-	free (pileb);
-	pileb = NULL;
-}
-
-/*static void	ft_big_sort(t_stack *pileA)
-{
-	t_stack	*pileb;
-	int		i;
-	int		count;
-
-	i = 1;
-	count = 0;
-	pileb = malloc(sizeof(*pileb));
-	if (!pileb)
-		return ;
-	stack_initial(pileb);
-	while (stack_size(pileA) != 3)
-	{
-		ft_push_interval11(pileA, pileb, i, &count);
-		i++;
-	}
-	ft_three_sort(pileA);
-	ft_five_loop2(pileA, pileb);
-	ft_sort_after_push(pileA);
-	free (pileb);
-	pileb = NULL;
-}*/
 
 static void	ft_big_sort(t_stack *pileA)
 {
@@ -119,8 +79,6 @@ void	ft_sort(t_stack *pile)
 		ft_three_sort(pile);
 	else if (size > 3 && size <= 5)
 		ft_five_sort(pile);
-	else if (size > 5 && size <= 100)
-		ft_medium_sort(pile);
-	else if (size > 100)
+	else if (size > 5)
 		ft_big_sort(pile);
 }
