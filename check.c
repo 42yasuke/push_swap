@@ -6,27 +6,39 @@
 /*   By: jose <jose@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 11:25:05 by jose              #+#    #+#             */
-/*   Updated: 2023/01/05 23:09:15 by jose             ###   ########.fr       */
+/*   Updated: 2023/01/06 00:20:27 by jose             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+static int	ft_is_good_chaine(char *line)
+{
+	size_t	i;
+
+	i = ft_strlen(line);
+	if (!ft_strncmp(line, "sa\n", i) || !ft_strncmp(line, "sb\n", i) || \
+		!ft_strncmp(line, "ss\n", i) || !ft_strncmp(line, "ra\n", i) || \
+		!ft_strncmp(line, "rb\n", i) || !ft_strncmp(line, "rr\n", i) || \
+		!ft_strncmp(line, "rra\n", i) || !ft_strncmp(line, "rrb\n", i) \
+		|| !ft_strncmp(line, "rrr\n", i) || \
+		!ft_strncmp(line, "pa\n", i) || !ft_strncmp(line, "pb\n", i))
+		return (1);
+	return (0);
+}
+
 static t_list	*ft_valide_commande(int fd)
 {
-	char			*line;
-	static t_list	*begin =  NULL;
-	size_t			i;
-	static int		is_good = 1;
+	char	*line;
+	t_list	*begin;
+	int		is_good;
 
 	line = get_next_line(fd);
-	i = ft_strlen(line);
+	begin = NULL;
+	is_good = 1;
 	while (line)
 	{
-		if (!ft_strncmp(line, "sa\n", i) || !ft_strncmp(line, "sb\n", i) || !ft_strncmp(line, "ss\n", i) || \
-		!ft_strncmp(line, "ra\n", i) || !ft_strncmp(line, "rb\n", i) || !ft_strncmp(line, "rr\n", i) || \
-		!ft_strncmp(line, "rra\n", i) || !ft_strncmp(line, "rrb\n", i) || !ft_strncmp(line, "rrr\n", i) || \
-		!ft_strncmp(line, "pa\n", i) || !ft_strncmp(line, "pb\n", i))
+		if (ft_is_good_chaine(line))
 			ft_lstadd_back(&begin, ft_lstnew(line));
 		else
 		{
@@ -34,10 +46,10 @@ static t_list	*ft_valide_commande(int fd)
 			is_good = 0;
 		}
 		line = get_next_line(fd);
-		i = ft_strlen(line);
 	}
 	if (!is_good)
-		return (free(line), ft_lstclear(&begin, &free), write (2, "Error\n", 6), NULL);
+		return (free(line), ft_lstclear(&begin, &free), \
+		write (2, "Error\n", 6), NULL);
 	return (begin);
 }
 
@@ -78,7 +90,7 @@ static void	ft_sort_manager(t_stack *pileA, t_stack *pileb, int fd)
 	tmp = begin;
 	while (tmp)
 	{
-		ft_sort_manager2(pileA, pileb, (char*)(tmp->content));
+		ft_sort_manager2(pileA, pileb, (char *)(tmp->content));
 		tmp = tmp->next;
 	}
 	ft_lstclear(&begin, &free);
@@ -90,21 +102,21 @@ static void	ft_sort_manager(t_stack *pileA, t_stack *pileb, int fd)
 
 int	main(int ac, char **av)
 {
-	t_stack	*pileA;
+	t_stack	*pilea;
 	t_stack	*pileb;
 
-	pileA = NULL;
+	pilea = NULL;
 	pileb = malloc(sizeof(*pileb));
 	if (!pileb)
 		return (0);
 	if (ft_valide_tab(ac, av))
 	{
-		pileA = stack_tab(ac, av);
-		if (!pileA)
+		pilea = stack_tab(ac, av);
+		if (!pilea)
 			return (free(pileb), 0);
-		ft_sort_manager(pileA, pileb, STDIN_FILENO);
-		stack_clear(pileA);
+		ft_sort_manager(pilea, pileb, STDIN_FILENO);
+		stack_clear(pilea);
 		stack_clear(pileb);
 	}
-	return (free(pileA), free(pileb), 0);
+	return (free(pilea), free(pileb), 0);
 }
