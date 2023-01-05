@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_utils4.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jralph <jralph@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jose <jose@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 09:44:56 by jralph            #+#    #+#             */
-/*   Updated: 2023/01/02 09:47:50 by jralph           ###   ########.fr       */
+/*   Updated: 2023/01/04 11:35:16 by jose             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ void	ft_remote(t_stack *pileA, t_stack *pileb, t_node *node_opti)
 	nbr = node_opti->pos;
 	if ((float)stack_size(pileb) / (float)2 > (float)nbr)
 		while (nbr--)
-			ft_rotate_manager(NULL, pileb, "rb\n");
+			ft_rotate_manager(NULL, pileb, "rb\n", 1);
 	else
 	{
 		nbr = stack_size(pileb) - nbr;
 		while (nbr--)
-			ft_rotate_manager(NULL, pileb, "rrb\n");
+			ft_rotate_manager(NULL, pileb, "rrb\n", 1);
 	}
 	ft_five_loop(pileA, pileb);
 }

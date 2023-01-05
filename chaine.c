@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   chaine.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jralph <jralph@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jose <jose@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 17:07:57 by jralph            #+#    #+#             */
-/*   Updated: 2023/01/02 18:12:46 by jralph           ###   ########.fr       */
+/*   Updated: 2023/01/04 11:35:10 by jose             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,10 @@ int	ft_chaine(char **av)
 	char	**str;
 	char	**str_copy;
 	int		i;
-	int		ret;
+	int		ret; 
 
 	i = 1;
+	ret = 0;
 	str = ft_split(av[1], ' ');
 	str_copy = malloc(sizeof(*str)*(ft_nb_nbr(str) + 2));
 	str_copy[0] = malloc(sizeof(char));
@@ -54,7 +55,8 @@ int	ft_chaine(char **av)
 		i++;
 	}
 	str_copy[i] = NULL;
-	ret = ft_valide_tab(ft_nb_nbr(str_copy), str_copy);
+	if (i > 2)
+		ret = ft_valide_tab(ft_nb_nbr(str_copy), str_copy);
 	ft_freeall(str);
 	free(str_copy[0]);
 	return (free(str_copy), ret);

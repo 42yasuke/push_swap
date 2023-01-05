@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jralph <jralph@student.42.fr>              +#+  +:+       +#+         #
+#    By: jose <jose@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/08 11:53:36 by jralph            #+#    #+#              #
-#    Updated: 2022/12/20 12:32:40 by jralph           ###   ########.fr        #
+#    Updated: 2023/01/05 23:15:01 by jose             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,8 @@ SRC =	ft_isalpha.c \
 		ft_putchar_fd.c \
 		ft_putstr_fd.c \
 		ft_putendl_fd.c \
-		ft_putnbr_fd.c
+		ft_putnbr_fd.c \
+		get_next_line.c
 
 BONUS =	ft_lstnew.c \
 		ft_lstadd_front.c \
@@ -79,12 +80,12 @@ all : $(NAME)
 	
 $(NAME) : $(OBJ)
 	$(AR) $(AFLAGS) $(NAME) $^
-	mv $(NAME) ../
-	make fclean
-	clear
 
 bonus : $(OBJ) $(OBJ_B)
 	$(AR) $(AFLAGS) $(NAME) $(OBJ) $(OBJ_B)
+	mv $(NAME) ../
+	make fclean
+	clear
 	
 clean :
 	$(RM) $(OBJ) $(OBJ_B)

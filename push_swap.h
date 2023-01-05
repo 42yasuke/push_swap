@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jralph <jralph@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jose <jose@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 11:13:15 by jralph            #+#    #+#             */
-/*   Updated: 2023/01/02 17:40:16 by jralph           ###   ########.fr       */
+/*   Updated: 2023/01/04 11:37:39 by jose             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,10 @@ typedef struct stack
 
 /*swap.c*/
 void	ft_swap(t_stack *pile);
-void	ft_swap_manager(t_stack *pileA, t_stack *pileb, char *str);
+void	ft_swap_manager(t_stack *pileA, t_stack *pileb, char *str, int print);
 
 /*ft_rotate.c*/
-void	ft_rotate_manager(t_stack *pileA, t_stack *pileb, char *str);
+void	ft_rotate_manager(t_stack *pileA, t_stack *pileb, char *str, int print);
 void	ft_rotate_manager_else(t_stack *pileA, t_stack *pileb, char *str);
 void	ft_rotate(t_stack *pile, char *str);
 
@@ -64,7 +64,7 @@ void	ft_five_loop(t_stack *pileA, t_stack *pileb);
 void	ft_five_loop2(t_stack *pileA, t_stack *pileb);
 
 /*push.c*/
-void	ft_push(t_stack *a, t_stack *b, int is_pa);
+void	ft_push(t_stack *a, t_stack *b, int is_pa, int print);
 void	ft_push_interval5(t_stack *pileA, t_stack *pileb);
 t_node	*ft_push_opti(t_stack *pileA, t_stack *pileb);
 

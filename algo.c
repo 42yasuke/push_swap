@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   algo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jralph <jralph@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jose <jose@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 19:11:36 by jralph            #+#    #+#             */
-/*   Updated: 2023/01/02 11:24:46 by jralph           ###   ########.fr       */
+/*   Updated: 2023/01/04 11:27:10 by jose             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,17 @@ static void	ft_three_sort(t_stack *pile)
 		tmp_max = tmp_max->prev;
 	if (tmp_max == pile->begin)
 	{
-		ft_rotate_manager(pile, NULL, "ra\n");
+		ft_rotate_manager(pile, NULL, "ra\n", 1);
 		if (!ft_is_sort(pile))
-			return (ft_swap_manager(pile, NULL, "sa\n"));
+			return (ft_swap_manager(pile, NULL, "sa\n", 1));
 	}
 	else if (tmp_max == pile->end && !ft_is_sort(pile))
-		return (ft_swap_manager(pile, NULL, "sa\n"));
+		return (ft_swap_manager(pile, NULL, "sa\n", 1));
 	else if (!ft_is_sort(pile))
 	{
-		ft_rotate_manager(pile, NULL, "rra\n");
+		ft_rotate_manager(pile, NULL, "rra\n", 1);
 		if (!ft_is_sort(pile))
-			return (ft_swap_manager(pile, NULL, "sa\n"));
+			return (ft_swap_manager(pile, NULL, "sa\n", 1));
 	}
 }
 
@@ -44,7 +44,7 @@ static void	ft_five_sort(t_stack *pileA)
 		return ;
 	stack_initial(pileb);
 	while (stack_size(pileA) != 3)
-		ft_push(pileA, pileb, 0);
+		ft_push(pileA, pileb, 0, 1);
 	ft_three_sort(pileA);
 	ft_five_loop2(pileA, pileb);
 	ft_sort_after_push(pileA);

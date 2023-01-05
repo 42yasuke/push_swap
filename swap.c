@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   swap.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jralph <jralph@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jose <jose@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 11:13:44 by jralph            #+#    #+#             */
-/*   Updated: 2023/01/02 11:22:08 by jralph           ###   ########.fr       */
+/*   Updated: 2023/01/04 11:37:58 by jose             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	ft_swap(t_stack *pile)
 	}
 }
 
-void	ft_swap_manager(t_stack *pileA, t_stack *pileb, char *str)
+void	ft_swap_manager(t_stack *pileA, t_stack *pileb, char *str, int print)
 {
 	if (ft_strlen(str) == 3)
 	{
@@ -45,6 +45,7 @@ void	ft_swap_manager(t_stack *pileA, t_stack *pileb, char *str)
 		}
 		ft_set_pos(pileA);
 		ft_set_pos(pileb);
-		write(1, str, ft_strlen(str));
+		if (print)
+			write(1, str, ft_strlen(str));
 	}
 }

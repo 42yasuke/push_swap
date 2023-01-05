@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jralph <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: jose <jose@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 10:09:21 by jralph            #+#    #+#             */
-/*   Updated: 2022/11/13 10:09:23 by jralph           ###   ########.fr       */
+/*   Updated: 2023/01/05 01:41:23 by jose             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	ft_cpy(char *res, char const *s, size_t start)
 	size_t	i;
 
 	i = start;
-	while (*s)
+	while (s && *s)
 	{
 		res[i] = *s;
 		s++;
@@ -31,9 +31,9 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	size_t	len;
 
 	len = 1;
-	if (*s1)
+	if (s1 && *s1)
 		len += ft_strlen(s1);
-	if (*s2)
+	if (s2 && *s2)
 		len += ft_strlen(s2);
 	res = malloc (sizeof(*s1) * len);
 	if (!res)

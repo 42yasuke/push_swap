@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_rotate.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jralph <jralph@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jose <jose@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 01:00:53 by jralph            #+#    #+#             */
-/*   Updated: 2023/01/02 01:05:54 by jralph           ###   ########.fr       */
+/*   Updated: 2023/01/04 11:09:53 by jose             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	ft_rotate(t_stack *pile, char *str)
 	}
 }
 
-void	ft_rotate_manager(t_stack *pileA, t_stack *pileb, char *str)
+void	ft_rotate_manager(t_stack *pileA, t_stack *pileb, char *str, int print)
 {
 	if (ft_strlen(str) == 3)
 	{
@@ -47,7 +47,8 @@ void	ft_rotate_manager(t_stack *pileA, t_stack *pileb, char *str)
 		ft_rotate_manager_else(pileA, pileb, str);
 	ft_set_pos(pileA);
 	ft_set_pos(pileb);
-	write(1, str, ft_strlen(str));
+	if (print)
+		write(1, str, ft_strlen(str));
 }
 
 void	ft_rotate_manager_else(t_stack *pileA, t_stack *pileb, char *str)

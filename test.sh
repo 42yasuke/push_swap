@@ -2,7 +2,7 @@
 
 fun ()
 { 
-	shuf -i 0-30 -n 15 | tr "\\n" " "
+	shuf -i 0-1000 -n 100 | tr "\\n" " "
 	echo " "
 }
 

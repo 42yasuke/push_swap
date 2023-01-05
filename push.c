@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   push.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jralph <jralph@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jose <jose@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 09:21:05 by jralph            #+#    #+#             */
-/*   Updated: 2023/01/02 09:24:19 by jralph           ###   ########.fr       */
+/*   Updated: 2023/01/04 11:14:37 by jose             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_push(t_stack *a, t_stack *b, int is_pa)
+void	ft_push(t_stack *a, t_stack *b, int is_pa, int print)
 {
 	int	index;
 
@@ -22,7 +22,8 @@ void	ft_push(t_stack *a, t_stack *b, int is_pa)
 			return ;
 		index = b->begin->index;
 		stack_push(a, stack_pop(b), index);
-		write (1, "pa\n", 3);
+		if (print)
+			write (1, "pa\n", 3);
 	}
 	else
 	{
@@ -30,7 +31,8 @@ void	ft_push(t_stack *a, t_stack *b, int is_pa)
 			return ;
 		index = a->begin->index;
 		stack_push(b, stack_pop(a), index);
-		write (1, "pb\n", 3);
+		if (print)
+			write (1, "pb\n", 3);
 	}
 	ft_set_pos(a);
 	ft_set_pos(b);
@@ -51,17 +53,17 @@ void	ft_push_interval5(t_stack *pileA, t_stack *pileb)
 		i = node_top->pos;
 		if ((float)i < (float)stack_size(pileA) / (float)2)
 			while (i--)
-				ft_rotate_manager(pileA, NULL, "ra\n");
+				ft_rotate_manager(pileA, NULL, "ra\n", 1);
 		else
 		{
 			i = node_low->pos;
 			while (i--)
-				ft_rotate_manager(pileA, NULL, "rra\n");
+				ft_rotate_manager(pileA, NULL, "rra\n", 1);
 		}
-		ft_push(pileA, pileb, 0);
+		ft_push(pileA, pileb, 0, 1);
 		if ((float)pileb->begin->index < (float)((ft_node_max(pileA, 1))->index \
 		+ 1) / (float)2)
-			ft_rotate_manager(NULL, pileb, "rb\n");
+			ft_rotate_manager(NULL, pileb, "rb\n", 1);
 	}
 }
 
