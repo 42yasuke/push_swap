@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jose <jose@student.42.fr>                  +#+  +:+       +#+         #
+#    By: jralph <jralph@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/02 14:13:55 by jralph            #+#    #+#              #
-#    Updated: 2023/01/05 23:15:21 by jose             ###   ########.fr        #
+#    Updated: 2023/01/09 22:00:58 by jralph           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,43 +34,38 @@ SRC =	src/algo.c \
 		src/swap.c \
 		src/chaine.c
 
-SRC_BONUS = src/check.c
 
 OBJ = $(SRC:.c=.o)
-
-OBJ_BONUS = $(SRC_BONUS:.c=.o)
 
 NAME = push_swap
 
 all : $(NAME)
 
-lib :
-		make bonus -C $(LIB)
-
 %.o : %.c
 			$(CC) $(CFLAGS) $< -o $@ $(INC)
-			
+
 main.o : src/main.c
 			$(CC) $(CFLAGS) $< -o $@ $(INC)
 
-$(NAME) : $(OBJ) lib main.o
-			$(CC) -o $(NAME) $(OBJ) main.o libft.a
-			make clean
-			clear
+check.o : src/check.c
+			$(CC) $(CFLAGS) $< -o $@ $(INC)
 
-bonus : $(OBJ) $(OBJ_BONUS) lib
-			$(CC) -o checker $(OBJ) $(OBJ_BONUS) libft.a
-			make clean
-			clear
+$(NAME) : $(OBJ) main.o
+			make bonus -C $(LIB)
+			$(CC) -o $(NAME) $(OBJ) main.o libft.a
+
+checker : $(OBJ) check.o
+			$(CC) -o checker $(OBJ) check.o libft.a
+
+bonus : checker
 
 clean :
-			$(RM) $(OBJ) $(OBJ_BONUS) main.o
-			clear
+			make clean -C $(LIB)
+			$(RM) $(OBJ) check.o main.o
 
 fclean : clean
 			$(RM) $(NAME) libft.a checker
-			clear
 
 re : fclean all
 
-.PHONY : all fclean re bonus $(NAME) lib
+.PHONY : all fclean re clean bonus

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_rotate.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jose <jose@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: jralph <jralph@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 01:00:53 by jralph            #+#    #+#             */
-/*   Updated: 2023/01/04 11:09:53 by jose             ###   ########.fr       */
+/*   Updated: 2023/01/09 22:37:50 by jralph           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,18 @@
 
 void	ft_rotate(t_stack *pile, char *str)
 {
-	if (str[1] != 'r')
+	if (pile->begin)
 	{
-		pile->begin = pile->begin->prev;
-		pile->end = pile->end->prev;
-	}
-	else
-	{
-		pile->begin = pile->begin->next;
-		pile->end = pile->end->next;
+		if (str[1] != 'r')
+		{
+			pile->begin = pile->begin->prev;
+			pile->end = pile->end->prev;
+		}
+		else
+		{
+			pile->begin = pile->begin->next;
+			pile->end = pile->end->next;
+		}
 	}
 }
 

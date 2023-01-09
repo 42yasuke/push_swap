@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jose <jose@student.42.fr>                  +#+  +:+       +#+         #
+#    By: jralph <jralph@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/08 11:53:36 by jralph            #+#    #+#              #
-#    Updated: 2023/01/05 23:15:01 by jose             ###   ########.fr        #
+#    Updated: 2023/01/09 21:52:15 by jralph           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -84,9 +84,7 @@ $(NAME) : $(OBJ)
 bonus : $(OBJ) $(OBJ_B)
 	$(AR) $(AFLAGS) $(NAME) $(OBJ) $(OBJ_B)
 	mv $(NAME) ../
-	make fclean
-	clear
-	
+
 clean :
 	$(RM) $(OBJ) $(OBJ_B)
 

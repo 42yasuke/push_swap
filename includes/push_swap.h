@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jose <jose@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: jralph <jralph@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 11:13:15 by jralph            #+#    #+#             */
-/*   Updated: 2023/01/04 11:37:39 by jose             ###   ########.fr       */
+/*   Updated: 2023/01/09 22:56:30 by jralph           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ t_node	*ft_push_opti(t_stack *pileA, t_stack *pileb);
 
 /*ft_utils.c*/
 int		ft_duplicate(int ac, char **av);
-int		ft_valide_tab(int ac, char **av);
+int		ft_valide_tab(int ac, char **av, int ckeck);
 long	ft_atol(const char *nptr);
 
 /*ft_utils2.c*/
@@ -90,7 +90,7 @@ t_node	*ft_find_highest(t_stack *pileA);
 t_node	*ft_find_lowest(t_stack *pileA);
 
 /*ft_chaine.c*/
-int		ft_chaine(char **av);
+int		ft_chaine(char **av, int check);
 t_stack	*ft_chaine2(char **av);
 
 #endif

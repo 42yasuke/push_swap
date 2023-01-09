@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jose <jose@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: jralph <jralph@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 11:25:05 by jose              #+#    #+#             */
-/*   Updated: 2023/01/06 00:20:27 by jose             ###   ########.fr       */
+/*   Updated: 2023/01/09 22:54:55 by jralph           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,15 +85,14 @@ static void	ft_sort_manager(t_stack *pileA, t_stack *pileb, int fd)
 	t_list	*tmp;
 
 	begin = ft_valide_commande(fd);
-	if (!begin)
-		return ;
 	tmp = begin;
 	while (tmp)
 	{
 		ft_sort_manager2(pileA, pileb, (char *)(tmp->content));
 		tmp = tmp->next;
 	}
-	ft_lstclear(&begin, &free);
+	if (begin)
+		ft_lstclear(&begin, &free);
 	if (ft_is_sort(pileA) && !pileb->begin)
 		write (1, "OK\n", 3);
 	else
@@ -109,7 +108,7 @@ int	main(int ac, char **av)
 	pileb = malloc(sizeof(*pileb));
 	if (!pileb)
 		return (0);
-	if (ft_valide_tab(ac, av))
+	if (ft_valide_tab(ac, av, 1))
 	{
 		pilea = stack_tab(ac, av);
 		if (!pilea)

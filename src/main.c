@@ -6,7 +6,7 @@
 /*   By: jralph <jralph@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 18:28:49 by jose              #+#    #+#             */
-/*   Updated: 2023/01/02 17:16:31 by jralph           ###   ########.fr       */
+/*   Updated: 2023/01/09 22:59:00 by jralph           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	main(int ac, char **av)
 	t_stack	*pile;
 
 	pile = NULL;
-	if (ft_valide_tab(ac, av))
+	if (ft_valide_tab(ac, av, 0))
 	{
 		pile = stack_tab(ac, av);
 		if (!pile)

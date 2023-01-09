@@ -6,7 +6,7 @@
 /*   By: jralph <jralph@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 09:36:33 by jralph            #+#    #+#             */
-/*   Updated: 2023/01/02 17:40:26 by jralph           ###   ########.fr       */
+/*   Updated: 2023/01/09 22:58:28 by jralph           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	ft_duplicate(int ac, char **av)
 	return (1);
 }
 
-int	ft_valide_tab(int ac, char **av)
+int	ft_valide_tab(int ac, char **av, int check)
 {
 	int		i;
 
@@ -45,7 +45,7 @@ int	ft_valide_tab(int ac, char **av)
 	if (ac == 1)
 		return (0);
 	if (ac == 2)
-		return (ft_chaine(av));
+		return (ft_chaine(av, check));
 	while (av[i])
 	{
 		if (ft_strlen(av[i]) > 11)

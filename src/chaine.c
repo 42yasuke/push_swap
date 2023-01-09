@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   chaine.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jose <jose@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: jralph <jralph@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 17:07:57 by jralph            #+#    #+#             */
-/*   Updated: 2023/01/05 23:59:29 by jose             ###   ########.fr       */
+/*   Updated: 2023/01/09 23:14:37 by jralph           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,30 +36,31 @@ static int	ft_nb_nbr(char **str)
 	return (i);
 }
 
-int	ft_chaine(char **av)
+int	ft_chaine(char **av, int check)
 {
-	char	**str;
-	char	**str_copy;
-	int		i;
-	int		ret;
+	char		**str;
+	char		**str_copy;
+	static int	i = 1;
+	static int	ret = 0;
 
-	i = 1;
-	ret = 0;
 	str = ft_split(av[1], ' ');
 	str_copy = malloc(sizeof(*str) * (ft_nb_nbr(str) + 2));
 	str_copy[0] = malloc(sizeof(char));
-	str_copy[0][0] = 'K';
 	while (str[i - 1])
 	{
 		str_copy[i] = str[i - 1];
 		i++;
 	}
-	str_copy[i] = NULL;
 	if (i > 2)
-		ret = ft_valide_tab(ft_nb_nbr(str_copy), str_copy);
-	ft_duplicate(ft_nb_nbr(str_copy), str_copy);
-	ft_freeall(str);
-	free(str_copy[0]);
+		ret = ft_valide_tab(ft_nb_nbr(str_copy), str_copy, 0);
+	else if (ft_duplicate(ft_nb_nbr(str_copy), str_copy) && check)
+	{
+		if (ft_atol(av[1]) > INT_MAX || ft_atol(av[1]) < INT_MIN)
+			write (2, "Error\n", 6);
+		else
+			write (1, "OK\n", 3);
+	}
+	(ft_freeall(str), free(str_copy[0]));
 	return (free(str_copy), ret);
 }
 
