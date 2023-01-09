@@ -57,6 +57,7 @@ int	ft_chaine(char **av)
 	str_copy[i] = NULL;
 	if (i > 2)
 		ret = ft_valide_tab(ft_nb_nbr(str_copy), str_copy);
+	ft_duplicate(ft_nb_nbr(str_copy), str_copy);
 	ft_freeall(str);
 	free(str_copy[0]);
 	return (free(str_copy), ret);

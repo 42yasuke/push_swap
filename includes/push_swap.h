@@ -15,7 +15,7 @@
 
 # include <stdio.h>
 # include <unistd.h>
-# include "libft/libft.h"
+# include "../libft/libft.h"
 # include <stdlib.h>
 
 typedef struct node

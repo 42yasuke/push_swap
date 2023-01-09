@@ -18,25 +18,27 @@ RM = rm -f
 
 LIB = libft/
 
-SRC =	algo.c \
-		algo_utils.c \
-		ft_rotate.c \
-		ft_utils.c \
-		ft_utils2.c \
-		ft_utils3.c \
-		ft_utils4.c \
-		push.c \
-		sort.c \
-		stack_utils.c \
-		stack.c \
-		swap.c \
-		chaine.c
+INC = -I includes/
 
-SRC_BONUS = check.c
+SRC =	src/algo.c \
+		src/algo_utils.c \
+		src/ft_rotate.c \
+		src/ft_utils.c \
+		src/ft_utils2.c \
+		src/ft_utils3.c \
+		src/ft_utils4.c \
+		src/push.c \
+		src/sort.c \
+		src/stack_utils.c \
+		src/stack.c \
+		src/swap.c \
+		src/chaine.c
+
+SRC_BONUS = src/check.c
 
 OBJ = $(SRC:.c=.o)
 
-OBJ_BONUS = check.o
+OBJ_BONUS = $(SRC_BONUS:.c=.o)
 
 NAME = push_swap
 
@@ -46,7 +48,10 @@ lib :
 		make bonus -C $(LIB)
 
 %.o : %.c
-			$(CC) $(CFLAGS) $< -o $@
+			$(CC) $(CFLAGS) $< -o $@ $(INC)
+			
+main.o : src/main.c
+			$(CC) $(CFLAGS) $< -o $@ $(INC)
 
 $(NAME) : $(OBJ) lib main.o
 			$(CC) -o $(NAME) $(OBJ) main.o libft.a

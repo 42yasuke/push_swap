@@ -101,7 +101,8 @@ char	*get_next_line(int fd)
 			free(stash);
 			return (NULL);
 		}
-		stash = ft_memmove(stash, ft_strchr(stash, '\n') + 1, ft_strlen(ft_strchr(stash, '\n')));
+		stash = ft_memmove(stash, ft_strchr(stash, '\n') + 1, \
+		ft_strlen(ft_strchr(stash, '\n')));
 		return (lines);
 	}
 	else if (stash && *stash)
