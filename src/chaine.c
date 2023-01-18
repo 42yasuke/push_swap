@@ -22,7 +22,6 @@ static void	ft_freeall(char **res)
 		free(res[i]);
 		i++;
 	}
-	free(res[i]);
 	free(res);
 }
 
@@ -54,10 +53,10 @@ int	ft_chaine(char **av, int check)
 	str = ft_split(av[1], ' ');
 	str_copy = malloc(sizeof(*str) * (ft_nb_nbr(str) + 2));
 	if (!str_copy)
-		return (0);
+		return (ft_freeall(str), 0);
 	str_copy[0] = malloc(sizeof(char));
 	if (!str_copy[0])
-		return (0);
+		return (ft_freeall(str), ft_freeall(str_copy), 0);
 	str_copy[0][0] = 0;
 	while (++i && str[i - 1])
 		str_copy[i] = str[i - 1];
@@ -81,10 +80,10 @@ t_stack	*ft_chaine2(char **av)
 	str = ft_split(av[1], ' ');
 	str_copy = malloc(sizeof(*str) * (ft_nb_nbr(str) + 2));
 	if (!str_copy)
-		return (0);
+		return (ft_freeall(str), 0);
 	str_copy[0] = malloc(sizeof(char));
 	if (!str_copy[0])
-		return (0);
+		return (ft_freeall(str), ft_freeall(str_copy), 0);
 	str_copy[0][0] = 0;
 	while (str[i - 1])
 	{
