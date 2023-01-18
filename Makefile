@@ -6,7 +6,7 @@
 #    By: jralph <jralph@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/02 14:13:55 by jralph            #+#    #+#              #
-#    Updated: 2023/01/09 22:00:58 by jralph           ###   ########.fr        #
+#    Updated: 2023/01/18 15:44:48 by jralph           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,21 +47,21 @@ all : $(NAME)
 main.o : src/main.c
 			$(CC) $(CFLAGS) $< -o $@ $(INC)
 
-check.o : src/check.c
+check_bonus.o : src/check_bonus.c
 			$(CC) $(CFLAGS) $< -o $@ $(INC)
 
 $(NAME) : $(OBJ) main.o
 			make bonus -C $(LIB)
 			$(CC) -o $(NAME) $(OBJ) main.o libft.a
 
-checker : $(OBJ) check.o
-			$(CC) -o checker $(OBJ) check.o libft.a
+checker : $(OBJ) check_bonus.o
+			$(CC) -o checker $(OBJ) check_bonus.o libft.a
 
 bonus : checker
 
 clean :
 			make clean -C $(LIB)
-			$(RM) $(OBJ) check.o main.o
+			$(RM) $(OBJ) check_bonus.o main.o
 
 fclean : clean
 			$(RM) $(NAME) libft.a checker
