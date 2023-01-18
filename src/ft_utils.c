@@ -34,6 +34,8 @@ int	ft_duplicate(int ac, char **av)
 			if ((av[i][j] == '-' || av[i][j] == '+') && av[i][j - 1] != ' ')
 				return (write (2, "Error\n", 6), 0);
 		}
+		if (av[i][j])
+			return (write (2, "Error\n", 6), 0);
 		i++;
 	}
 	return (1);
