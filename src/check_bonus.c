@@ -6,7 +6,7 @@
 /*   By: jralph <jralph@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 15:45:11 by jralph            #+#    #+#             */
-/*   Updated: 2023/01/18 15:45:14 by jralph           ###   ########.fr       */
+/*   Updated: 2023/01/20 19:38:19 by jralph           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static int	ft_is_good_chaine(char *line)
 	return (0);
 }
 
-static t_list	*ft_valide_commande(int fd)
+static t_list	*ft_valide_commande(int fd, int *is_there_only_good_inst)
 {
 	char	*line;
 	t_list	*begin;
@@ -47,6 +47,7 @@ static t_list	*ft_valide_commande(int fd)
 		}
 		line = get_next_line(fd);
 	}
+	*is_there_only_good_inst = is_good;
 	if (!is_good)
 		return (free(line), ft_lstclear(&begin, &free), \
 		write (2, "Error\n", 6), NULL);
@@ -83,14 +84,17 @@ static void	ft_sort_manager(t_stack *pileA, t_stack *pileb, int fd)
 {
 	t_list	*begin;
 	t_list	*tmp;
+	int		is_there_only_good_inst;
 
-	begin = ft_valide_commande(fd);
+	begin = ft_valide_commande(fd, &is_there_only_good_inst);
 	tmp = begin;
 	while (tmp)
 	{
 		ft_sort_manager2(pileA, pileb, (char *)(tmp->content));
 		tmp = tmp->next;
 	}
+	if (!begin && !is_there_only_good_inst)
+		return ;
 	if (begin)
 		ft_lstclear(&begin, &free);
 	if (ft_is_sort(pileA) && !pileb->begin)
@@ -108,6 +112,7 @@ int	main(int ac, char **av)
 	pileb = malloc(sizeof(*pileb));
 	if (!pileb)
 		return (0);
+	stack_initial(pileb);
 	if (ft_valide_tab(ac, av, 1))
 	{
 		pilea = stack_tab(ac, av);
