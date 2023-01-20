@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jose <jose@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: jralph <jralph@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 15:10:16 by jralph            #+#    #+#             */
-/*   Updated: 2023/01/05 01:41:01 by jose             ###   ########.fr       */
+/*   Updated: 2023/01/20 14:50:10 by jralph           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ static void	ft_loop(char **stash, int fd)
 
 	len = BUFFER_SIZE;
 	buf = malloc(sizeof(*buf) * (BUFFER_SIZE + 1));
+	if (!buf)
+		return ;
 	while (!ft_strchr(*stash, '\n') && len == BUFFER_SIZE)
 	{
 		len = read(fd, buf, BUFFER_SIZE);

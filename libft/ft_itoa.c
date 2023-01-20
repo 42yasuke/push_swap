@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jralph <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: jralph <jralph@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 01:31:32 by jralph            #+#    #+#             */
-/*   Updated: 2022/11/14 01:31:36 by jralph           ###   ########.fr       */
+/*   Updated: 2023/01/20 14:51:37 by jralph           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ static void	ft_alloc(int n, char **res)
 		*res = malloc (sizeof(**res) * (ft_compt(n) + 1));
 	else
 		*res = malloc (sizeof(**res) * (ft_compt(n) + 2));
+	if (!*res)
+		return ;
 }
 
 static void	ft_loop(int n, int *i, long *begin, char **res)

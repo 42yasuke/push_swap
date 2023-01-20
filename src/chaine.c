@@ -6,7 +6,7 @@
 /*   By: jralph <jralph@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 17:07:57 by jralph            #+#    #+#             */
-/*   Updated: 2023/01/18 15:41:29 by jralph           ###   ########.fr       */
+/*   Updated: 2023/01/20 14:54:42 by jralph           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,10 +80,10 @@ t_stack	*ft_chaine2(char **av)
 	str = ft_split(av[1], ' ');
 	str_copy = malloc(sizeof(*str) * (ft_nb_nbr(str) + 2));
 	if (!str_copy)
-		return (ft_freeall(str), 0);
+		return (ft_freeall(str), NULL);
 	str_copy[0] = malloc(sizeof(char));
 	if (!str_copy[0])
-		return (ft_freeall(str), ft_freeall(str_copy), 0);
+		return (ft_freeall(str), ft_freeall(str_copy), NULL);
 	str_copy[0][0] = 0;
 	while (str[i - 1])
 	{
