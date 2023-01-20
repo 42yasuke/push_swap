@@ -6,7 +6,7 @@
 /*   By: jralph <jralph@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 09:36:33 by jralph            #+#    #+#             */
-/*   Updated: 2023/01/18 11:38:43 by jralph           ###   ########.fr       */
+/*   Updated: 2023/01/20 17:34:47 by jralph           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ int	ft_duplicate(int ac, char **av)
 	int	i;
 	int	j;
 
-	i = 1;
-	while (i < ac)
+	i = 0;
+	while (++i < ac)
 	{
 		j = i + 1;
 		while (j < ac)
@@ -28,15 +28,15 @@ int	ft_duplicate(int ac, char **av)
 			j++;
 		}
 		j = 0;
-		while (ft_isdigit(av[i][j]) || av[i][j] == ' ')
+		while (ft_isdigit(av[i][j]) || av[i][j] == ' ' || \
+		(av[i][j] == '-' || av[i][j] == '+'))
 		{
 			j++;
-			if ((av[i][j] == '-' || av[i][j] == '+') && av[i][j - 1] != ' ')
+			if ((av[i][j] == '-' || av[i][j] == '+') && av[i][j] != ' ')
 				return (write (2, "Error\n", 6), 0);
 		}
 		if (av[i][j])
 			return (write (2, "Error\n", 6), 0);
-		i++;
 	}
 	return (1);
 }
