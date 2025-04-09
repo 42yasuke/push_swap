@@ -50,3 +50,11 @@ make re
 ```
 
 Cela affichera les instructions nécessaires pour trier la pile {3, 2, 1} (par exemple : sa ra).
+
+### 🔁 Checker de correction
+
+Utilise le checker officiel 42 pour tester :
+
+```bash
+ARG="1 4 3"; ./push_swap $ARG | ./checker_linux $ARG
+```
